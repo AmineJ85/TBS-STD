@@ -16,7 +16,7 @@ os.environ['FLASK_ENV'] = 'development'
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import the modules after loading environment variables
-from .email_service import init_mail
+from email_service import init_mail
 from Endpoints.register import register_bp
 from Endpoints.login import login_bp  
 from Endpoints.student import student_bp

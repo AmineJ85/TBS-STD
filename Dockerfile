@@ -1,5 +1,8 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim-buster
+FROM python:3.11-alpine
+
+# Installer les dépendances système nécessaires pour mysqlclient
+RUN apk add --no-cache gcc musl-dev mariadb-connector-c-dev pkgconfig
 
 # Set the working directory in the container
 WORKDIR /app
@@ -21,4 +24,7 @@ ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # Run the Flask application
-CMD ["flask", "run"]
+# CMD ["flask", "run"]
+
+# Run the Flask application
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
